@@ -668,7 +668,7 @@ const recettes = {
         },      
         { 
             texte: "Ajouter la pâte de curry et faire revenir pendant 1 minute pour libérer les arômes.", 
-            photo: "recette/curry_crevettes/epice.jpg"  // Chemin de ta photo d'étape
+            photo: "recette/curry_crevettes/epices.jpg"  // Chemin de ta photo d'étape
         },
         { 
             texte: "Verser le lait de coco, porter à ébullition, puis réduire le feu et laisser mijoter pendant 10 minutes.", 

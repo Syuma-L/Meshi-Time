@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Meshi Time - Recettes</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<header>
+    <img src="logo/meshitime.png" alt="Logo MeshiTime" class="logo-img">
+    <h2 class="site-title">Meshi <span>Time</span></h2>
+
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <nav class="nav-mobile">
+        <a href="index.html">Accueil</a>
+        <a href="recettes.html">Recettes</a>
+        <a href="contact.html">Contact</a>
+        <div class="nav-social-mobile">
+            <a href="https://www.instagram.com/mesh1.time?igsh=MWR6dXhtaGJxZ3RrYg=="><img src="logo/insta.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@mesh1.time?_r=1&_t=ZN-95yQwrBsCvu"><img src="logo/tiktok.png" alt="TikTok"></a>
+            <a href="https://www.facebook.com/share/1L49ZUFbFe/?mibextid=wwXIfr "><img src="logo/facebook.png" alt="Facebook"></a>
+        </div>
+    </nav>
+    
+    <div class="social-icons">
+        <a href="https://www.instagram.com/mesh1.time?igsh=MWR6dXhtaGJxZ3RrYg=="><img src="logo/insta.png" alt="Instagram"></a>
+        <a href="https://www.tiktok.com/@mesh1.time?_r=1&_t=ZN-95yQwrBsCvu"><img src="logo/tiktok.png" alt="TikTok"></a>
+        <a href="https://www.facebook.com/share/1L49ZUFbFe/?mibextid=wwXIfr "><img src="logo/facebook.png" alt="Facebook"></a>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>Bienvenue chez MeshiTime</h1>
+    <p>Le goût du monde dans votre cuisine.</p>
+    <div class="search-container" style="position: relative; width: 100%; max-width: 600px; margin: 0 auto;">
+        <input type="text" class="search-bar" id="search-input" placeholder="Rechercher une recette, un ingrédient, un pays..." autocomplete="off">
+        <div id="suggestions-box" class="suggestions-list"></div>
+    </div>
+</section>
+
+<script src="data.js"></script>
+
+<h2 class="section-title">Tendances</h2>
+
+<div class="recipe-grid" id="grid-affichage"></div>
+
+<script>
+    const searchInput = document.getElementById('search-input');
+    const grid = document.getElementById('grid-affichage');
+    const suggestionsBox = document.getElementById('suggestions-box');
+
+    // Fonction d'affichage avec filtre intelligent global (Titre + Ingrédients + Nation)
+    function afficherRecettes(filtre = "") {
+        grid.innerHTML = ""; 
+        const motCle = filtre.toLowerCase().trim();
+        
+        const idsFiltrés = Object.keys(recettes).filter(id => {
+            const r = recettes[id];
+            
+            // Critère A : Recherche dans le titre
+            const titreMatch = r.title.toLowerCase().includes(motCle);
+            
+            // Critère B : Recherche dans le pays (nation)
+            const nationMatch = r.nation ? r.nation.toLowerCase().includes(motCle) : false;
+            
+            // Critère C : Recherche dans les ingrédients (gère le texte ET les objets avec quantités)
+            const ingredientsMatch = r.ingredients && r.ingredients.some(ing => {
+                const nomIngredient = typeof ing === 'object' ? ing.nom : ing;
+                return nomIngredient.toLowerCase().includes(motCle);
+            });
+
+            return titreMatch || nationMatch || ingredientsMatch;
+        });
+
+        if (idsFiltrés.length === 0) {
+            grid.innerHTML = "<p style='color:var(--text-dark); grid-column: 1/-1; text-align:center;'>Aucun plat trouvé... 🍳</p>";
+            return;
+        }
+
+        // Affichage des cartes filtrées
+        idsFiltrés.forEach(id => {
+            const r = recettes[id];
+            grid.innerHTML += `
+                <a href="recette.html?id=${id}" class="recipe-card-link">
+                    <div class="recipe-card">
+                        <img src="${r.image}" class="recipe-main-image">
+                        <div class="recipe-info">
+                            <h3>${r.title}</h3>
+                            <p>⭐ ${r.rating || '4.5'} | ⏱️ ${r.time}</p>
+                        </div>
+                    </div>
+                </a>
+            `;
+        });
+    }
+
+    // Écouteur de la recherche intelligent
+    searchInput.addEventListener('input', (e) => {
+        const motCle = e.target.value.toLowerCase().trim();
+        suggestionsBox.innerHTML = ""; 
+
+        if (motCle.length > 0) {
+            // Recherche des suggestions correspondantes (Titres ou Nations)
+            const suggestions = Object.keys(recettes).filter(id => {
+                const r = recettes[id];
+                const titreMatch = r.title.toLowerCase().includes(motCle);
+                const nationMatch = r.nation ? r.nation.toLowerCase().includes(motCle) : false;
+                return titreMatch || nationMatch;
+            });
+
+            if (suggestions.length > 0) {
+                suggestionsBox.style.display = "block"; 
+                const listeAffichee = new Set(); // Évite les doublons de pays suggérés
+
+                suggestions.forEach(id => {
+                    const r = recettes[id];
+                    
+                    // Si le mot-clé correspond à un pays, on suggère le pays
+                    if (r.nation && r.nation.toLowerCase().includes(motCle) && !listeAffichee.has(r.nation)) {
+                        listeAffichee.add(r.nation);
+                        creerItemSuggestion(r.nation, `🌍 Pays : ${r.nation}`);
+                    } 
+                    // Sinon, on suggère le titre de la recette
+                    else if (r.title.toLowerCase().includes(motCle) && !listeAffichee.has(r.title)) {
+                        listeAffichee.add(r.title);
+                        creerItemSuggestion(r.title, r.title);
+                    }
+                });
+            } else {
+                suggestionsBox.style.display = "none";
+            }
+        } else {
+            suggestionsBox.style.display = "none";
+        }
+        
+        // Filtrage de la grille principale en temps réel
+        afficherRecettes(motCle);
+    });
+
+    // Fonction outil pour créer et gérer le clic sur un élément de suggestion
+    function creerItemSuggestion(valeurRecherche, texteAffiche) {
+        const div = document.createElement('div');
+        div.classList.add('suggestion-item');
+        div.innerText = texteAffiche;
+        
+        div.onclick = () => {
+            searchInput.value = valeurRecherche; // Remplit le champ
+            suggestionsBox.style.display = "none"; // Masque les suggestions
+            afficherRecettes(valeurRecherche); // Lance l'affichage filtré
+        };
+        suggestionsBox.appendChild(div);
+    }
+
+    // Cacher les suggestions si on clique ailleurs
+    document.addEventListener('click', (e) => {
+        if (e.target !== searchInput) {
+            suggestionsBox.style.display = "none";
+        }
+    });
+
+    // Affichage initial au chargement de la page
+    if (typeof recettes !== 'undefined') {
+        afficherRecettes();
+    } else {
+        grid.innerHTML = "<p style='color:red'>Erreur : data.js non trouvé.</p>";
+    }
+
+    // Gestion du menu Burger mobile
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-mobile');
+
+    if (menuToggle && navMenu) {
+        menuToggle.onclick = function() {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('is-active');
+        };
+
+        document.querySelectorAll('.nav-mobile a').forEach(link => {
+            link.onclick = () => {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('is-active');
+            };
+        });
+    }
+</script>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h2 class="brand-name">Meshi <span>Time</span></h2>
+            <p class="brand-tagline">Le goût du monde dans votre cuisine.</p>
+        </div>
+
+        <div class="footer-nav">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="recettes.html">Recettes</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-social">
+            <h3>Suivez-nous</h3>
+            <div class="social-wrapper">
+                <a href="https://www.instagram.com/mesh1.time" class="social-link" target="_blank">
+                    <img src="logo/insta.png" alt="Instagram">
+                </a>
+                <a href="https://www.tiktok.com/@mesh1.time" class="social-link" target="_blank">
+                    <img src="logo/tiktok.png" alt="TikTok">
+                </a>
+                <a href="https://www.facebook.com/share/1L49ZUFbFe/" class="social-link" target="_blank">
+                    <img src="logo/facebook.png" alt="Facebook">
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-copyright">
+        <p>&copy; 2026 MeshiTime • Créé avec passion par des passionnés</p>
+    </div>
+</footer>
+
+</body>
+</html>

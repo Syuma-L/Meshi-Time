@@ -562,7 +562,7 @@ const recettes = {
         },
         { 
             texte: "Vinaigrette à la moutarde : mélanger sel, poivre, moutarde, huile d'olive et vinaigre.", 
-            photo: "recette/salade_gesier.jpg"  // Chemin de ta photo d'étape
+            photo: "recette/gesier/salade_gesier.jpg"  // Chemin de ta photo d'étape
         }
     ]
 },
@@ -592,7 +592,7 @@ const recettes = {
         },
         { 
             texte: "Ajouter les poivrons coupés grossièrement et les herbes (thym, romarin) pour parfumer la viande pendant la cuisson au four (180°C 30min).", 
-            photo: "recette/cote_porc_long/cuisson.png"  // Chemin de ta photo d'étape
+            photo: "recette/cote_porc_long/cuisson.PNG"  // Chemin de ta photo d'étape
         },
         { 
             texte: "Pendant ce temps, cuire le riz et préparer une sauce au beurre citronné pour accompagner.", 

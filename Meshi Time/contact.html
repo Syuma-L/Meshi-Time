@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Meshi Time - Nous suivre</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Pour les icônes officielles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <img src="logo/meshitime.png" alt="Logo MeshiTime" class="logo-img">
+    <h2 class="site-title">Meshi <span>Time</span></h2>
+
+    <!-- Le bouton Burger (caché sur ordi, visible sur mobile) -->
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <!-- Ta navigation -->
+    <nav class="nav-mobile">
+        <a href="index.html">Accueil</a>
+        <a href="recettes.html">Recettes</a>
+        <a href="contact.html">Contact</a>
+        <div class="nav-social-mobile">
+            <a href="https://www.instagram.com/mesh1.time?igsh=MWR6dXhtaGJxZ3RrYg=="><img src="logo/insta.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@mesh1.time?_r=1&_t=ZN-95yQwrBsCvu"><img src="logo/tiktok.png" alt="TikTok"></a>
+            <a href="https://www.facebook.com/share/1L49ZUFbFe/?mibextid=wwXIfr "><img src="logo/facebook.png" alt="Facebook"></a>
+        </div>
+    </nav>
+    <div class="social-icons">
+        <a href="https://www.instagram.com/mesh1.time?igsh=MWR6dXhtaGJxZ3RrYg=="><img src="logo/insta.png" alt="Instagram"></a>
+        <a href="https://www.tiktok.com/@mesh1.time?_r=1&_t=ZN-95yQwrBsCvu"><img src="logo/tiktok.png" alt="TikTok"></a>
+        <a href="https://www.facebook.com/share/1L49ZUFbFe/?mibextid=wwXIfr "><img src="logo/facebook.png" alt="Facebook"></a>
+    </div>
+</header>
+
+<main class="contact-social-container">
+    <section class="contact-hero">
+        <h1>Rejoignez la communauté</h1>
+        <p>Retrouvez nos vidéos, nos coulisses et partagez vos réalisations avec nous sur les réseaux !</p>
+    </section>
+
+    <div class="social-grid-large">
+        <!-- Carte Instagram -->
+        <a href="https://www.instagram.com/mesh1.time?igsh=MWR6dXhtaGJxZ3RrYg==" target="_blank" class="social-card instagram">
+            <i class="fab fa-instagram"></i>
+            <h3>Instagram</h3>
+            <p>@mesh1.time</p>
+            <span class="follow-tag">Suivre</span>
+        </a>
+
+        <!-- Carte TikTok -->
+        <a href="https://www.tiktok.com/@mesh1.time?_r=1&_t=ZN-95yQwrBsCvu" target="_blank" class="social-card tiktok">
+            <i class="fab fa-tiktok"></i>
+            <h3>TikTok</h3>
+            <p>@mesh1.time</p>
+            <span class="follow-tag">Suivre</span>
+        </a>
+
+        <!-- Carte Facebook -->
+        <a href="https://www.facebook.com/share/1L49ZUFbFe/?mibextid=wwXIfr" target="_blank" class="social-card facebook">
+            <i class="fab fa-facebook-f"></i>
+            <h3>Facebook</h3>
+            <p>Meshi Time</p>
+            <span class="follow-tag">Suivre</span>
+        </a>
+    </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-mobile');
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('is-active');
+            console.log("Menu cliqué ! État :", navMenu.classList.contains('active'));
+        });
+
+        // Fermer le menu si on clique sur un lien
+        document.querySelectorAll('.nav-mobile a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    } else {
+        console.error("Erreur : L'ID 'mobile-menu' ou la classe '.nav-mobile' est introuvable dans le HTML.");
+    }
+});
+</script>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <!-- Section Logo/Slogan -->
+        <div class="footer-brand">
+            <h2 class="brand-name">Meshi <span>Time</span></h2>
+            <p class="brand-tagline">Le goût du monde dans votre cuisine.</p>
+        </div>
+
+        <!-- Section Liens -->
+        <div class="footer-nav">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="recettes.html">Recettes</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Section Sociale -->
+        <div class="footer-social">
+    <h3>Suivez-nous</h3>
+    <div class="social-wrapper">
+        <a href="https://www.instagram.com/mesh1.time" class="social-link" target="_blank">
+            <img src="logo/insta.png" alt="Instagram">
+        </a>
+        <a href="https://www.tiktok.com/@mesh1.time" class="social-link" target="_blank">
+            <img src="logo/tiktok.png" alt="TikTok">
+        </a>
+        <a href="https://www.facebook.com/share/1L49ZUFbFe/" class="social-link" target="_blank">
+            <img src="logo/facebook.png" alt="Facebook">
+        </a>
+    </div>
+</div>
+    
+    <div class="footer-copyright">
+        <p>&copy; 2024 MeshiTime • Créé avec passion par des passionnés</p>
+    </div>
+</footer>
+
+</body>
+</html>

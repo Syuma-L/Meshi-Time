@@ -4,7 +4,7 @@ const recettes = {
    ============================================ */
     "karaage": {
     title: "Karaage",
-    image: "recette/karaage.png",
+    image: "recette/karaage/karaage.png",
     time: "20 min",
     nation : "🇯🇵  Japon",
     basePersonnes: 2,
@@ -41,7 +41,7 @@ const recettes = {
 
 "Yakisoba": {
     title: "Yakisoba au Poulet",
-    image: "recette/yakisoba.jpg",
+    image: "recette/yakisoba/yakisoba.png",
     time: "20 min",
     nation : "🇯🇵  Japon",
     basePersonnes: 2,
@@ -203,7 +203,7 @@ const recettes = {
 
 "Pâtes Arrabbiata": {
     title: "Pâtes Arrabbiata",
-    image: "recette/pate_arrabbiata.jpg",
+    image: "recette/pate_arrabiata/pate_arrabbiata.jpg",
     time: "25 min",
     nation : "🇮🇹  Italie",
     basePersonnes: 2,
@@ -278,6 +278,44 @@ const recettes = {
         { 
             texte: "Ajouter l'eau de cuisson petit à petit pour obtenir une crème onctueuse sans cuire les œufs.", 
             photo: "recette/pate_carbonara.jpg" 
+        }
+    ]
+},
+"Pâtes Carbonara à l'avocat": {
+    title: "Pâtes Carbonara à l'avocat",
+    image: "recette/carbonara_avocat/carbonara_avocat.jpg",
+    time: "20 min",
+    nation : "🇮🇹  Italie",
+    basePersonnes: 2,
+    ingredients: [
+        {nom: "Pâtes (Spaghetti)", quantite: 200, unite: "g"},
+        {nom: "Guanciale ou Pancetta", quantite: 150, unite: "g"},
+        {nom: "Jaunes d'œufs", quantite: 2, unite: "unité"},
+        {nom: "Avocat", quantite: 1, unite: "unité"},
+        {nom: "Pecorino Romano", quantite: 50, unite: "g"},
+        {nom: "Poivre noir", quantite: 1, unite: "pincée"},
+        {nom: "Sel", quantite: 1, unite: "pincée"}
+    ],
+    etapes: [
+        { 
+            texte: "Faire dorer le guanciale coupé en morceaux dans une poêle sans matière grasse jusqu'à ce qu'il soit croustillant.", 
+            photo: "recette/carbonara_avocat/lardon.jpg" 
+        },
+        { 
+            texte: "Dans un bol, mélanger les jaunes d'œufs avec le fromage râpé et l'avocat (sel + poivre).", 
+            photo: "recette/carbonara_avocat/melange.jpg" 
+        },
+        { 
+            texte: "Cuire les pâtes. Avant de les égoutter, prélever une louche d'eau de cuisson.", 
+            photo: "" 
+        },
+        { 
+            texte: "Mélanger les pâtes au guanciale, couper le feu, puis verser le mélange œufs/fromage en remuant énergiquement.", 
+            photo: "" 
+        },
+        { 
+            texte: "Ajouter l'eau de cuisson petit à petit pour obtenir une crème onctueuse sans cuire les œufs.", 
+            photo: "recette/carbonara_avocat/carbonara_avocat.jpg" 
         }
     ]
 },
@@ -441,9 +479,56 @@ const recettes = {
         }
     ]
 },
+
+"Pâtes bolognaise revisitées": {
+    title: "Pâtes Bolognaise Revisitées",
+    image: "recette/bolognaise_revisitees/pate_bolognaise.jpg",
+    time: "20 min",
+    nation : "Spécialité de la maison",
+    basePersonnes: 2,
+    ingredients: [
+        {nom: "Pâtes (Penne)", quantite: 200, unite: "g"},
+        {nom: "Bœuf haché", quantite: 200, unite: "g"},
+        {nom: "Sauce tomate", quantite: 400, unite: "g"},
+        {nom: "Concentré de tomates", quantite: 100, unite: "g"},
+        {nom: "poivron", quantite: 1, unite: "unité"},
+        {nom: "champignons", quantite: 5, unite: "unités"},
+        {nom: "Oignon", quantite: 1, unite: "unité"},
+        {nom: "Ail", quantite: 2, unite: "gousses"},
+        {nom: "Sel", quantite: 1, unite: "pincée"},
+        {nom: "Poivre", quantite: 1, unite: "pincée"},
+    ],
+    etapes: [
+        { 
+            texte: "Faire revenir l'ail, l'oignon, les champignons et le poivron, puis ajouter le bœuf haché.", 
+            photo: "recette/bolognaise_revisitees/cuisson.jpg" 
+        },
+        { 
+            texte: "Une fois la viande dorée, verser la sauce tomate et le concentré.", 
+            photo: "recette/bolognaise_revisitees/melange.jpg" 
+        },
+        { 
+            texte: "Laisser mijoter à feu doux pendant 15 minutes pour que les saveurs se développent.", 
+            photo: "" 
+        },
+        { 
+            texte: "Incorporer les pâtes cuites et le persil haché à la sauce.", 
+            photo: "" 
+        },
+        { 
+            texte: "Bien mélanger pour que les pâtes s'imprègnent de la sauce et servir chaud.", 
+            photo: "recette/bolognaise_revisitees/pate_bolognaise.jpg" 
+        }
+    ]
+},
+
+/* ============================================
+   SECTION : France
+   ============================================ */
+
 "Salade de Gésier": {
     title: "Salade de Gésier",
-    image: "recette/salade_gesier.jpg",
+    image: "recette/gesier/salade_gesier.jpg",
     time: "25 min",
     nation : "🇫🇷  France",
     basePersonnes: 2,
@@ -518,5 +603,89 @@ const recettes = {
             photo: "recette/cote_porc_long/dressage.jpeg"  // Chemin de ta photo d'étape
         }
     ]
+},
+
+"Avocado Toast": {
+    title: "Avocado Toast",
+    image: "recette/avocado_toast/avocado_toast.jpg",
+    time: "10 min",
+    nation : "🇺🇸  USA",
+    basePersonnes: 1,
+    ingredients: [
+        {nom: "Pain de campagne", quantite: 1, unite: "tranche"},
+        {nom: "Avocat", quantite: 1, unite: "unité"},
+        {nom: "Citron", quantite: 0.5, unite: "unité"},
+        {nom: "Sel", quantite: 1, unite: "pincée"},
+        {nom: "Poivre", quantite: 1, unite: "pincée"},
+        {nom: "Oeuf", quantite: 1, unite: "unité"},
+        {nom: "Piment d'Espelette (optionnel)", quantite: 1, unite: "pincée"}
+    ],
+    etapes: [
+        { 
+            texte: "Toaster la tranche de pain jusqu'à ce qu'elle soit bien dorée.", 
+            photo: ""  // Chemin de ta photo d'étape
+        },
+        { 
+            texte: "Écraser l'avocat avec le jus de citron, le sel, le poivre et le piment d'Espelette pour faire une purée onctueuse.", 
+            photo: ""  // Chemin de ta photo d'étape
+        },
+        { 
+            texte: "Étaler généreusement la purée d'avocat sur la tranche de pain toasté.", 
+            photo: ""  // Chemin de ta photo d'étape
+        },
+        { 
+            texte: "Ajouter un oeuf plat",
+            photo: "recette/avocado_toast/avocado_toast.jpg"  // Chemin de ta photo d'étape
+        }
+    ]
+},
+
+/* ============================================
+   SECTION : Indien
+   ============================================ */
+
+"Curry aux crevettes": {
+    title: "Curry aux Crevettes",
+    image: "recette/curry_crevettes/curry_crevettes.jpg",
+    time: "30 min",
+    nation : "🇮🇳  Inde",
+    basePersonnes: 2,
+    ingredients: [
+        {nom: "Crevettes décortiquées", quantite: 200, unite: "g"},
+        {nom: "Lait de coco", quantite: 400, unite: "ml"},
+        {nom: "Pâte de curry rouge", quantite: 2, unite: "cuillères à soupe"},
+        {nom: "Oignon", quantite: 1, unite: "unité"},
+        {nom: "Ail", quantite: 2, unite: "gousses"},
+        {nom: "Gingembre", quantite: 30, unite: "g"},
+        {nom: "Coriandre fraîche", quantite: 1, unite: "pincée"},
+        {nom: "Jus de citron vert", quantite: 1, unite: "cuillère à soupe"},
+        {nom: "Riz", quantite: 200, unite: "g"}
+    ],
+    etapes: [
+        { 
+            texte: "Faire revenir l'oignon, l'ail et le gingembre dans un peu d'huile jusqu'à ce qu'ils soient dorés.", 
+            photo: ""  // Chemin de ta photo d'étape
+        },      
+        { 
+            texte: "Ajouter la pâte de curry et faire revenir pendant 1 minute pour libérer les arômes.", 
+            photo: "recette/curry_crevettes/epice.jpg"  // Chemin de ta photo d'étape
+        },
+        { 
+            texte: "Verser le lait de coco, porter à ébullition, puis réduire le feu et laisser mijoter pendant 10 minutes.", 
+            photo: ""  // Chemin de ta photo d'étape
+        },
+        {
+            texte: "Dans une autre poile, faire dorer les crevettes",
+            photo: "recette/curry_crevettes/crevettes.jpg"  // Chemin de ta photo d'étape
+        },
+        {                   
+            texte: "Ajouter les crevettes dorées dans la sauce et laisser mijoter 10min.",      
+            photo: ""  // Chemin de ta photo d'étape
+        },
+        { 
+            texte: "Servir le curry de crevettes sur un lit de riz.", 
+            photo: "recette/curry_crevettes/curry_crevettes.jpg"  // Chemin de ta photo d'étape
+        }
+    ]
 }
-};
+}
